@@ -1,42 +1,42 @@
 import Input from "./Input";
-import { useState } from "react";
 
-export default function UserInput() {
-
-  const [inputChange, setInputChange] = useState('');
-
-  function handleInpuntChange(event) {
-    setInputChange(event.target.value);
-    console.log(inputChange);
-  }
-
+export default function UserInput({ onChangeInput, inputChange }) {
   return (
-    <div id="user-input">
+    <section id="user-input">
       <div className="input-group">
         <Input
           label="Initial Investment"
-          changedInput={handleInpuntChange}
-          value={inputChange}
+          // two-way binding - alla funzione assegnare il nome della chiave dell'oggetto ed il valore ricavato dall'evento onChange
+          changedInput={(event) =>
+            onChangeInput("initialInvestment", event.target.value)
+          }
+          inputValue={inputChange.initialInvestment}
         />
         <Input
           label="Annual Investment"
-          changedInput={handleInpuntChange}
-          value={inputChange}
+          changedInput={(event) =>
+            onChangeInput("annualInvestment", event.target.value)
+          }
+          inputValue={inputChange.annualInvestment}
         />
       </div>
 
       <div className="input-group">
         <Input
           label="Expected Return"
-          changedInput={handleInpuntChange}
-          value={inputChange}
+          changedInput={(event) =>
+            onChangeInput("expectedReturn", event.target.value)
+          }
+          inputValue={inputChange.expectedReturn}
         />
         <Input
           label="Duration"
-          changedInput={handleInpuntChange}
-          value={inputChange}
+          changedInput={(event) =>
+            onChangeInput("duration", event.target.value)
+          }
+          inputValue={inputChange.duration}
         />
       </div>
-    </div>
+    </section>
   );
 }
