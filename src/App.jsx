@@ -24,10 +24,13 @@ function App() {
     // console.log(key + ": " + value);
   }
 
+  const inputIsValid = inputChange.duration >= 1;
+
   return (
     <>
       <UserInput inputChange={inputChange} onChangeInput={handleInputChange} />
-      <Results input={inputChange} />
+      { !inputIsValid && <p className="center">Inserire una durata maggiore di 0</p> }
+      { inputIsValid && <Results input={inputChange} /> }
     </>
   );
 }
